@@ -273,76 +273,31 @@
 
         .product-visual {
             position: relative;
-            aspect-ratio: 1;
             max-width: 480px;
             margin: 0 auto;
         }
 
-        .phone-frame {
-            position: absolute;
-            top: 10%;
-            left: 10%;
-            width: 80%;
-            height: 80%;
-            background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 100%);
-            border-radius: 40px;
-            border: 2px solid rgba(255, 255, 255, 0.05);
+        .product-image-wrapper {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            background: var(--bg-card);
             box-shadow:
-                0 0 0 1px rgba(255, 255, 255, 0.03),
-                0 20px 60px rgba(0, 0, 0, 0.6),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                0 30px 80px rgba(0, 0, 0, 0.6);
             animation: float 6s ease-in-out infinite;
         }
 
+        .product-image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 24px;
+        }
+
         @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(0.5deg); }
-        }
-
-        .phone-screen {
-            position: absolute;
-            top: 3%;
-            left: 3%;
-            width: 94%;
-            height: 94%;
-            background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
-            border-radius: 35px;
-            overflow: hidden;
-        }
-
-        .phone-notch {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 35%;
-            height: 25px;
-            background: #000;
-            border-radius: 0 0 15px 15px;
-        }
-
-        .card-slot {
-            position: absolute;
-            top: 20%;
-            left: 10%;
-            width: 80%;
-            height: 45%;
-            background: linear-gradient(135deg, #1c1c1c 0%, #141414 100%);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            box-shadow:
-                0 4px 20px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.03);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .card-slot::before {
-            content: 'CARD';
-            font-size: 0.6rem;
-            letter-spacing: 0.15em;
-            color: var(--text-muted);
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
         }
 
         .magnet-rings {
@@ -352,36 +307,37 @@
             transform: translate(-50%, -50%);
             width: 100%;
             height: 100%;
+            pointer-events: none;
         }
 
         .magnet-ring {
             position: absolute;
             top: 50%;
             left: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.02);
             border-radius: 50%;
-            animation: spin 20s linear infinite;
+            animation: spin 25s linear infinite;
         }
 
         .magnet-ring:nth-child(1) {
-            width: 120%;
-            height: 120%;
-            margin: -60% 0 0 -60%;
+            width: 130%;
+            height: 130%;
+            margin: -65% 0 0 -65%;
         }
 
         .magnet-ring:nth-child(2) {
-            width: 140%;
-            height: 140%;
-            margin: -70% 0 0 -70%;
+            width: 150%;
+            height: 150%;
+            margin: -75% 0 0 -75%;
             animation-direction: reverse;
-            animation-duration: 25s;
+            animation-duration: 30s;
         }
 
         .magnet-ring:nth-child(3) {
-            width: 160%;
-            height: 160%;
-            margin: -80% 0 0 -80%;
-            animation-duration: 30s;
+            width: 170%;
+            height: 170%;
+            margin: -85% 0 0 -85%;
+            animation-duration: 35s;
         }
 
         @keyframes spin {
@@ -615,11 +571,8 @@
                         <div class="magnet-ring"></div>
                         <div class="magnet-ring"></div>
                     </div>
-                    <div class="phone-frame">
-                        <div class="phone-screen">
-                            <div class="phone-notch"></div>
-                            <div class="card-slot"></div>
-                        </div>
+                    <div class="product-image-wrapper">
+                        <img src="product.jpg" alt="ORBITON iPhone 17 Pro Max Wallet Case" loading="eager">
                     </div>
                 </div>
                 <div class="product-info">
