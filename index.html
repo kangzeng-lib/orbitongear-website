@@ -3,38 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORBITON | Premium MagSafe Accessories</title>
-    <meta name="description" content="Premium MagSafe accessories for iPhone. Wallet cases, magnetic mounts, and more.">
+    <title>ORBITON | MagSafe Reimagined</title>
+    <meta name="description" content="MagSafe accessories designed for modern life. Premium materials, thoughtful details.">
     <style>
+        :root {
+            --bg-dark: #080808;
+            --bg-card: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+            --accent: #ffffff;
+            --border: rgba(255, 255, 255, 0.06);
+            --gradient-1: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 255, 255, 0.08), transparent);
+            --gradient-2: radial-gradient(ellipse 60% 40% at 80% 100%, rgba(255, 255, 255, 0.03), transparent);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #0a0a0a;
-            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', system-ui, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Ambient background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-1);
+            pointer-events: none;
+            z-index: 0;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 2.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         /* Header */
         header {
-            padding: 2rem 0;
+            padding: 1.75rem 0;
             position: fixed;
             width: 100%;
             top: 0;
-            background: rgba(10, 10, 10, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(8, 8, 8, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border);
             z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(8, 8, 8, 0.95);
         }
 
         .nav {
@@ -44,33 +83,66 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 0.3em;
-            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            color: var(--text-primary);
+            text-decoration: none;
         }
 
         .logo span {
-            color: #666;
+            color: var(--text-muted);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
         }
 
         .cta-button {
-            background: #ffffff;
-            color: #0a0a0a;
-            padding: 0.75rem 2rem;
+            background: var(--accent);
+            color: var(--bg-dark);
+            padding: 0.625rem 1.5rem;
             border: none;
-            border-radius: 50px;
+            border-radius: 8px;
             font-weight: 600;
+            font-size: 0.875rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
-            font-size: 0.9rem;
         }
 
         .cta-button:hover {
-            background: #333;
-            color: #ffffff;
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        .cta-button.outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .cta-button.outline:hover {
+            background: var(--text-primary);
+            color: var(--bg-dark);
         }
 
         /* Hero */
@@ -79,161 +151,384 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 8rem 2rem 4rem;
+            padding: 10rem 2.5rem 6rem;
             text-align: center;
-            background: radial-gradient(ellipse at center, #1a1a1a 0%, #0a0a0a 70%);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            animation: fadeIn 1s ease-out;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 300;
-            letter-spacing: 0.1em;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .hero h1 span {
-            font-weight: 700;
-            display: block;
-            margin-top: 0.5rem;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: #888;
-            margin-bottom: 3rem;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Product Section */
-        .product {
-            padding: 6rem 2rem;
-            background: #0a0a0a;
-        }
-
-        .product-card {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .product-image {
-            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
-            border-radius: 20px;
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: var(--gradient-2);
             position: relative;
             overflow: hidden;
         }
 
-        .product-image::before {
+        .hero::before {
             content: '';
             position: absolute;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
             border-radius: 50%;
+            animation: pulse 8s ease-in-out infinite;
         }
 
-        .product-image span {
-            font-size: 4rem;
-            font-weight: 300;
-            color: #333;
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.3; }
+        }
+
+        .hero-content {
+            max-width: 720px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #4ade80;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.75rem, 6.5vw, 4.75rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.4s forwards;
+        }
+
+        .hero h1 span {
+            display: block;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.6s forwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.8s forwards;
+        }
+
+        /* Product Section */
+        .product {
+            padding: 8rem 2.5rem;
+            position: relative;
+        }
+
+        .product-label {
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .product-visual {
+            position: relative;
+            aspect-ratio: 1;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .phone-frame {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
+            background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 100%);
+            border-radius: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.03),
+                0 20px 60px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(0.5deg); }
+        }
+
+        .phone-screen {
+            position: absolute;
+            top: 3%;
+            left: 3%;
+            width: 94%;
+            height: 94%;
+            background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
+            border-radius: 35px;
+            overflow: hidden;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35%;
+            height: 25px;
+            background: #000;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .card-slot {
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            width: 80%;
+            height: 45%;
+            background: linear-gradient(135deg, #1c1c1c 0%, #141414 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow:
+                0 4px 20px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.03);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-slot::before {
+            content: 'CARD';
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+        }
+
+        .magnet-rings {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+        }
+
+        .magnet-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 50%;
+            animation: spin 20s linear infinite;
+        }
+
+        .magnet-ring:nth-child(1) {
+            width: 120%;
+            height: 120%;
+            margin: -60% 0 0 -60%;
+        }
+
+        .magnet-ring:nth-child(2) {
+            width: 140%;
+            height: 140%;
+            margin: -70% 0 0 -70%;
+            animation-direction: reverse;
+            animation-duration: 25s;
+        }
+
+        .magnet-ring:nth-child(3) {
+            width: 160%;
+            height: 160%;
+            margin: -80% 0 0 -80%;
+            animation-duration: 30s;
+        }
+
+        @keyframes spin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .product-info {
+            padding: 2rem 0;
+        }
+
+        .product-category {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
         }
 
         .product-info h2 {
-            font-size: 2rem;
-            font-weight: 300;
-            margin-bottom: 1rem;
-            letter-spacing: 0.05em;
+            font-size: 2.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .product-info .tagline {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
         }
 
         .product-info .price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #ffffff;
-        }
-
-        .product-info .features {
-            list-style: none;
+            font-size: 2rem;
+            font-weight: 500;
             margin-bottom: 2rem;
+            color: var(--text-primary);
         }
 
-        .product-info .features li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #1a1a1a;
-            color: #888;
-            font-size: 0.95rem;
+        .product-info .price span {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 400;
         }
 
-        .product-info .features li::before {
-            content: '✓';
-            margin-right: 0.75rem;
-            color: #ffffff;
+        .features {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
         }
 
-        /* Brand Section */
-        .brand {
-            padding: 6rem 2rem;
-            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+            background: rgba(17, 17, 17, 0.8);
+        }
+
+        .feature-icon {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-muted) 100%);
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .feature-text {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .feature-text strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Story Section */
+        .story {
+            padding: 10rem 2.5rem;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .story-content {
+            max-width: 650px;
+            margin: 0 auto;
             text-align: center;
         }
 
-        .brand h3 {
-            font-size: 1.5rem;
-            font-weight: 300;
-            letter-spacing: 0.2em;
-            margin-bottom: 2rem;
-            color: #666;
+        .story-content h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
         }
 
-        .brand p {
-            max-width: 600px;
-            margin: 0 auto;
-            color: #888;
+        .story-content p {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
             line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-content p:last-child {
+            margin-bottom: 0;
         }
 
         /* Footer */
         footer {
-            padding: 3rem 2rem;
+            padding: 4rem 2.5rem;
             text-align: center;
-            border-top: 1px solid #1a1a1a;
         }
 
         footer p {
-            color: #444;
-            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-size: 0.8125rem;
         }
 
         footer a {
-            color: #666;
+            color: var(--text-secondary);
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         footer a:hover {
-            color: #ffffff;
+            color: var(--text-primary);
         }
 
         /* Animations */
-        @keyframes fadeIn {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -242,83 +537,166 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .product-card {
+        @media (max-width: 900px) {
+            .product-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 3rem;
+            }
+
+            .product-visual {
+                max-width: 380px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 1.5rem;
             }
 
             .hero {
-                padding: 6rem 2rem 4rem;
+                padding: 8rem 1.5rem 4rem;
             }
 
-            .logo {
-                font-size: 1.2rem;
+            .product {
+                padding: 6rem 1.5rem;
+            }
+
+            .story {
+                padding: 6rem 1.5rem;
+            }
+
+            .nav-actions {
+                gap: 1rem;
+            }
+
+            .nav-link {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <div class="container">
             <nav class="nav">
-                <div class="logo">ORBITON<span>GEAR</span></div>
-                <a href="https://www.amazon.com/dp/B0G52NY4Z5" target="_blank" class="cta-button">Buy Now</a>
+                <a href="#" class="logo">ORBITON<span>GEAR</span></a>
+                <div class="nav-actions">
+                    <a href="#product" class="nav-link">Product</a>
+                    <a href="#story" class="nav-link">About</a>
+                    <a href="https://www.amazon.com/dp/B0G52NY4Z5" target="_blank" class="cta-button">Shop Now</a>
+                </div>
             </nav>
         </div>
     </header>
 
     <section class="hero">
-"        <div class="hero-content">
-            <h1>MAGNETIC<br><span>PERFECTION</span></h1>
-            <p>Premium MagSafe accessories designed for those who appreciate exceptional quality and minimalist aesthetics.</p>
-            <a href="https://www.amazon.com/dp/B0G52NY4Z5" target="_blank" class="cta-button">Shop on Amazon</a>
+        <div class="hero-content">
+            <div class="hero-badge">New Release</div>
+            <h1>Made for those<br><span>who care about details</span></h1>
+            <p>A wallet case that doesn't compromise. MagSafe precision, premium materials, everyday elegance.</p>
+            <div class="hero-buttons">
+                <a href="https://www.amazon.com/dp/B0G52NY4Z5" target="_blank" class="cta-button">Buy Now — $89.99</a>
+                <a href="#product" class="cta-button outline">Learn More</a>
+            </div>
         </div>
     </section>
 
-    <section class="product">
+    <section class="product" id="product">
         <div class="container">
-            <div class="product-card">
-                <div class="product-image">
-                    <span>◉</span>
+            <div class="product-label">The Product</div>
+            <div class="product-grid">
+                <div class="product-visual">
+                    <div class="magnet-rings">
+                        <div class="magnet-ring"></div>
+                        <div class="magnet-ring"></div>
+                        <div class="magnet-ring"></div>
+                    </div>
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="phone-notch"></div>
+                            <div class="card-slot"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="product-info">
-                    <h2>iPhone Wallet Case</h2>
-                    <div class="price">$89.99</div>
-                    <ul class="features">
-                        <li>Strong MagSafe magnetic hold</li>
-                        <li>Premium leather construction</li>
-                        <li>Integrated card slot</li>
-                        <li>Designed for iPhone 17 Pro Max</li>
-                        <li>Sleek black finish</li>
-                    </ul>
-                    <a href="https://www.amazon.com/dp/B0G52NY4Z5" target="_blank" class="cta-button">Buy Now</a>
+                    <div class="product-category">iPhone 17 Pro Max</div>
+                    <h2>MagSafe Wallet Case</h2>
+                    <p class="tagline">Your phone, your cards, one seamless experience. Built for the way you actually use your device.</p>
+                    <div class="price">$89.99 <span>/ Free shipping on Amazon</span></div>
+                    <div class="features">
+                        <div class="feature">
+                            <div class="feature-icon"></div>
+                            <div class="feature-text"><strong>Strong magnetic hold</strong> — MagSafe certified for reliable attachment every time</div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon"></div>
+                            <div class="feature-text"><strong>Premium leather</strong> — Hand-finished with genuine leather that ages beautifully</div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon"></div>
+                            <div class="feature-text"><strong>Smart card slot</strong> — Holds up to 3 cards with easy push-through access</div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon"></div>
+                            <div class="feature-text"><strong>Full protection</strong> — Raised edges, wireless charging compatible, precise fit</div>
+                        </div>
+                    </div>
+                    <a href="https://www.amazon.com/dp/B0G52NY4Z5" target="_blank" class="cta-button">Shop on Amazon</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="brand">
+    <section class="story" id="story">
         <div class="container">
-            <h3>THE ORBITON PHILOSOPHY</h3>
-            <p>We believe in creating products that seamlessly integrate into your daily life. Every detail is thoughtfully designed, every material carefully selected. Experience the difference of true craftsmanship.</p>
+            <div class="story-content">
+                <h3>Why we made this</h3>
+                <p>We couldn't find a wallet case that felt right. Too bulky, too weak, or just poorly made. So we built it ourselves.</p>
+                <p>Every detail was questioned and refined. The leather sourcing, the magnet placement, the card slot depth. The result is something we're proud to put your phone in.</p>
+                <p>Small details matter. That's the Orbiton way.</p>
+            </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Orbitongear. All rights reserved. <a href="https://www.amazon.com/dp/B0G52NY4Z5" target="_blank">Shop on Amazon</a></p>
+            <p>&copy; 2026 Orbitongear. Crafted with care in California.</p>
+            <p style="margin-top: 0.5rem;"><a href="https://www.amazon.com/dp/B0G52NY4Z5" target="_blank">Shop on Amazon</a> · <a href="mailto:hello@orbitongear.com">Contact</a></p>
         </div>
     </footer>
 
     <script>
-        // Smooth scroll for any anchor links
+        // Header scroll effect
+        const header = document.getElementById('header');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
     </script>
